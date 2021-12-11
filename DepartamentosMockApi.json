@@ -1,0 +1,69 @@
+{
+  "Departamentos": [
+    {
+      "codigo": 900,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 901,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 902,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 903,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 904,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 905,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 906,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 907,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 908,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 909,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 910,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 911,
+      "descricao": "Departamento 4",
+      "status": true
+    },
+    {
+      "codigo": 912,
+      "descricao": "Departamento 4",
+      "status": true
+    }
+  ]
+}
