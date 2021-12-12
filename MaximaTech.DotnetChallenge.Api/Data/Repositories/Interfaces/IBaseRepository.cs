@@ -15,7 +15,7 @@ namespace MaximaTech.DotnetChallenge.Api.Data.Repositories.Interfaces
 
         Task AddAsync(TModel model);
 
-        Task AddRangeAsync(IEnumerable<TModel> models);
+        void AddRange(IEnumerable<TModel> models);
 
         Task Update(TModel model);
 

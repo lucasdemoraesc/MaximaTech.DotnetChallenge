@@ -32,7 +32,7 @@ namespace MaximaTech.DotnetChallenge.Api.Services.Implementations
                 await _repository.AddAsync(model);
         }
 
-        public virtual async Task AddRangeAsync(IEnumerable<TModel> models)
+        public virtual void AddRange(IEnumerable<TModel> models)
         {
             IList<TModel> modelsToAdd = new List<TModel>();
 
@@ -42,7 +42,7 @@ namespace MaximaTech.DotnetChallenge.Api.Services.Implementations
                     modelsToAdd.Add(model);
             }
 
-            await _repository.AddRangeAsync(modelsToAdd);
+            _repository.AddRange(modelsToAdd);
         }
 
         public virtual async Task Update(TModel model)

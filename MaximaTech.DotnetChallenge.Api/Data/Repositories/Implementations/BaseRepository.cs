@@ -42,10 +42,10 @@ namespace MaximaTech.DotnetChallenge.Api.Data.Repositories.Implementations
             await Context.SaveChangesAsync();
         }
 
-        public virtual async Task AddRangeAsync(IEnumerable<TModel> models)
+        public virtual void AddRange(IEnumerable<TModel> models)
         {
             Persistence.AddRange(models);
-            await Context.SaveChangesAsync();
+            Context.SaveChangesAsync();
         }
 
         public virtual async Task Update(TModel model)

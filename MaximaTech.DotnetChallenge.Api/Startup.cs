@@ -1,4 +1,7 @@
 using MaximaTech.DotnetChallenge.Api.Data;
+using MaximaTech.DotnetChallenge.Api.Services.Implementations;
+using MaximaTech.DotnetChallenge.Api.Services.Interfaces;
+using MaximaTech.DotnetChallenge.Api.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +44,13 @@ namespace MaximaTech.DotnetChallenge.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MaximaTech.DotnetChallenge.Api v1"));
                 new DatabaseFiller(context).Fill();
             }
+
+            /* Agenda a consulta dos dados na API de departamentos para executar a cada
+             * 30 minutos, a partir das 01:30 do primeiro dia após a inicialização da aplicação. */
+            TaskScheduler.Instance.ScheduleTask(01, 20, 0.5, () =>
+            {
+                new SyncDepartamentosTask().Run();
+            });
 
             app.UseHttpsRedirection();
 

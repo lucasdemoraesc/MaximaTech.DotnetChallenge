@@ -17,21 +17,21 @@ namespace MaximaTech.DotnetChallenge.Api
         public static IServiceCollection AddServicesResolution(this IServiceCollection services)
         {
             services.AddScoped<IProdutoService, ProdutoService>();
-            services.AddScoped<IDepartamentoService, DepartamentoService>();
+            services.AddTransient<IDepartamentoService, DepartamentoService>();
             return services;
         }
 
         public static IServiceCollection AddRepositoriesResolution(this IServiceCollection services)
         {
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
+            services.AddTransient<IDepartamentoRepository, DepartamentoRepository>();
             return services;
         }
 
         public static IServiceCollection AddDbContextResolution(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(configuration.GetConnectionString("DbConnectionString")));
             return services;
         }
     }
