@@ -1,0 +1,13 @@
+﻿@model Produto
+@{
+    bool novoCadastro = Model == null;
+    ViewData["Title"] = novoCadastro ? "Cadastrar produto" : "Editar produto";
+}
+
+<div class="container">
+    <div class="row gx-6 justify-content-between">
+        <div class="col-sm-12">
+            <h2>@ViewData["Title"]</h2>
+        </div>
+    </div>
+</div>

@@ -46,8 +46,8 @@ namespace MaximaTech.DotnetChallenge.Api
             }
 
             /* Agenda a consulta dos dados na API de departamentos para executar a cada
-             * 30 minutos, a partir das 01:30 do primeiro dia após a inicialização da aplicação. */
-            TaskScheduler.Instance.ScheduleTask(01, 20, 0.5, () =>
+             * 30 minutos, a partir das 16:30 do primeiro dia após a inicialização da aplicação. */
+            TaskScheduler.Instance.ScheduleTask(16, 30, 0.5, () =>
             {
                 new SyncDepartamentosTask().Run();
             });

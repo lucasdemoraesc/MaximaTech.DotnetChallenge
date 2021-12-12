@@ -33,7 +33,7 @@ namespace MaximaTech.DotnetChallenge.Api.Data.Repositories.Implementations
 
         public virtual async Task<IEnumerable<TModel>> ListAsync()
         {
-            return await Persistence.ToListAsync();
+            return await Persistence.OrderBy(x => x.Codigo).ToListAsync();
         }
 
         public virtual async Task AddAsync(TModel model)

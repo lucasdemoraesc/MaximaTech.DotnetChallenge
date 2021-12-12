@@ -78,7 +78,7 @@ namespace MaximaTech.DotnetChallenge.Api.Controllers
             return Ok(produto);
         }
 
-        [HttpDelete]
+        [HttpDelete("{codigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Produto>> Remove(int codigo)
