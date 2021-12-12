@@ -22,7 +22,7 @@ namespace MaximaTech.DotnetChallenge.Api.Utils
             DateTime firstRun = new DateTime(now.Year, now.Month, now.Day, hour, minutes, 0);
 
             if (now > firstRun)
-                firstRun = firstRun.AddDays(1);
+                firstRun = now.AddMinutes(interval);
 
             TimeSpan timeToGo = firstRun - now;
 
