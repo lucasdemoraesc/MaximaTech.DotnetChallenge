@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+    web:
+        image: maxima-web
+        build:
+            context: .
+            dockerfile: DockerfileWeb
+        links:
+            - maximatechdotnetchallenge-api-1
+        ports:
+            - "4200:80"
+        networks:
+            - maxima-network
+        depends_on:
+            - "api"
+
+    api:
+        image: maxima-api
+        build:
+            context: .
+            dockerfile: DockerfileApi
+        links:
+            - maximatechdotnetchallenge-database-1
+        ports:
+            - "3000:5000"
+        environment:
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+        volumes:
+            - ${USERPROFILE}\.aspnet\https:/https/
+        networks:
+            - maxima-network
+        depends_on:
+            - "maxima-database"
+
+networks:
+    maxima-network:
+        driver: bridge
