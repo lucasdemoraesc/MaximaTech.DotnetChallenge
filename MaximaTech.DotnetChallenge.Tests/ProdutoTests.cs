@@ -43,6 +43,13 @@ namespace MaximaTech.DotnetChallenge.Tests
         }
 
         [TestMethod]
+        public void Produto_DescricaoTamanhoMinimo()
+        {
+            produto.Descricao = "T";
+            Assert.IsTrue(ValidateModel(produto).Count == 1);
+        }
+
+        [TestMethod]
         public void Produto_DescricaoTamanhoMaximoExcedido()
         {
             produto.Descricao = new string('T', 100);
