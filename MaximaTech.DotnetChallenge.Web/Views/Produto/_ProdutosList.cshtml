@@ -12,7 +12,7 @@
             columns.Add(model => model.Status ? "Ativo" : "Inativo").Titled("Status");
             columns.Add(model => string.Concat(
                 $"<a type=\"button\" class=\"btn btn-primary btn-acao\" title=\"Editar\" href=\"" + Url.Action("Edit", "Produto", new { codigo = model.Codigo }) + "\"><i class=\"fa fa-edit\"></i></a>",
-                model.Status ? $"<a type=\"button\" class=\"btn btn-danger btn-acao\" title=\"Excluir (Inativar)\" href=\"" + Url.Action("Remove", "Produto", new { codigo = model.Codigo }) + "\"><i class=\"fa fa-trash\"></i></a>"
+                model.Status ? $"<a type=\"button\" class=\"btn btn-danger btn-acao\" title=\"Excluir (Inativar)\" href=\"" + Url.Action("Remove", "Produto", new { codigo = model.Codigo }) + "\"><i class=\"fa fa-times\"></i></a>"
                 : "")
             ).Titled("Ações").Encoded(false);
         })

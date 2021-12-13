@@ -19,7 +19,7 @@
 </div>
 
 <div class="container">
-    <form class="form-produto" asp-controller="Produto" asp-action="Save">
+    <form class="form-produto" asp-controller="Produto" asp-action="@(novoCadastro ? "AddNew" : "Update")">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <input type="hidden" asp-for="Id" />

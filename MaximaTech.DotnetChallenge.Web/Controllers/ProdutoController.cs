@@ -44,6 +44,24 @@ namespace MaximaTech.DotnetChallenge.Web.Controllers
             return View("Edit", produto);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddNew(ProdutoViewModel produto)
+        {
+            var body = GetContent(produto);
+            var response = await _httpClient.PostAsync("Produtos", body);
+            return await Index();
+        }
+
+        [HttpPost]
+        [Route("{codigo}")]
+
+        public async Task<IActionResult> Update(int codigo, ProdutoViewModel produto)
+        {
+            var body = GetContent(produto);
+            var response = await _httpClient.PutAsync($"Produtos/{codigo}", body);
+            return await Index();
+        }
+
         [Route("New")]
         public Task<IActionResult> New()
         {
