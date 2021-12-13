@@ -1,7 +1,13 @@
-﻿@model Produto
+﻿@model ProdutoViewModel
 @{
-    bool novoCadastro = Model == null;
+    bool novoCadastro = Model.Codigo == 0;
     ViewData["Title"] = novoCadastro ? "Cadastrar produto" : "Editar produto";
+    var departamentosList = Model.Departamentos.Select(x => new SelectListItem()
+            {
+                Value = x.Codigo.ToString(),
+                Text = x.Descricao,
+                Selected = x.Codigo == Model.Departamento?.Codigo
+            }).ToList();
 }
 
 <div class="container">
@@ -11,3 +17,88 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <form class="form-produto" asp-controller="Produto" asp-action="Save">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input asp-for="Status" class="form-control" type="checkbox" checked="@(novoCadastro || Model.Status)"
+                           data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Ativo" data-off="Inativo">
+                </div>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-key"></i>
+                            </div>
+                        </div>
+                        <input asp-for="Codigo" class="form-control" type="number" value="@(Model.Codigo == 0 ? null : Model.Codigo)"
+                               readonly="@(novoCadastro ? false : true)" placeholder="Código" />
+                    </div>
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-align-center"></i>
+                            </div>
+                        </div>
+                        <input asp-for="Descricao" class="form-control" type="text" placeholder="Descrição" />
+                    </div>
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-building-o"></i>
+                            </div>
+                        </div>
+                        <select asp-for="Departamento.Codigo" asp-items="departamentosList" class="form-control"></select>
+                    </div>
+                    <span asp-validation-for="Departamento.Codigo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                        <input asp-for="Preco" class="form-control" type="number" value="@(Model.Preco == 0 ? null : Model.Preco)"
+                               step="0.05" placeholder="Preço" />
+                    </div>
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-secondary" href="javascript:window.history.back();">Voltar</a>
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

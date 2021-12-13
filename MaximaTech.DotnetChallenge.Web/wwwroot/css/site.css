@@ -84,7 +84,7 @@ body {
   color: #141414;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 17px;
 }
 
@@ -188,6 +188,7 @@ body {
 .content {
   padding: 16px;
   margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 /* Home styles
@@ -209,4 +210,8 @@ body {
 .btn-acao {
     margin: 2px;
     color: white !important;
+}
+
+.form-produto {
+    margin-top: 15px;
 }

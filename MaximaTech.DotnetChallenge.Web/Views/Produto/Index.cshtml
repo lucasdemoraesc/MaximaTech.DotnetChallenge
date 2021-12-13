@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Produto>
+﻿@model IEnumerable<ProdutoViewModel>
 @{
     ViewData["Title"] = "Produtos";
 }
@@ -15,33 +15,4 @@
     </div>
 </div>
 
-<div>
-    @(Html
-        .Grid(Model)
-        .Build(columns =>
-        {
-            columns.Add(model => model.Codigo).Titled("Código");
-            columns.Add(model => model.Descricao).Titled("Descrição");
-            columns.Add(model => model.Departamento.Descricao).Titled("Departamento");
-            columns.Add(model => model.Preco.ToString("C")).Titled("Preço");
-            columns.Add(model => model.Status ? "Ativo" : "Inativo").Titled("Status");
-            columns.Add(model => string.Concat(
-                $"<a type=\"button\" class=\"btn btn-primary btn-acao\" title=\"Editar\" href=\"" + Url.Action("Edit", "Produto", new { codigo = model.Codigo }) + "\"><i class=\"fa fa-edit\"></i></a>",
-                model.Status ? $"<a type=\"button\" class=\"btn btn-danger btn-acao\" title=\"Excluir (Inativar)\" href=\"" + Url.Action("Remove", "Produto", new { codigo = model.Codigo }) + "\"><i class=\"fa fa-trash\"></i></a>"
-                : "")
-            ).Titled("Ações").Encoded(false);
-        })
-        .Using(GridFilterMode.Excel)
-        .Empty("Não há produtos cadastrados")
-        .Pageable(pager =>
-        {
-            pager.PageSizes = new Dictionary<Int32, String> { { 0, "Tudo" }, { 10, "10" }, { 15, "15" }, { 20, "20" } };
-            pager.ShowPageSizes = true;
-            pager.PagesToDisplay = 3;
-            pager.CurrentPage = 1;
-            pager.RowsPerPage = 10;
-        })
-        .Filterable()
-        .Sortable()
-    )
-</div>
+<partial name="_ProdutosList" />

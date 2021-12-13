@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MaximaTech.DotnetChallenge.Domain.Models;
+using MaximaTech.DotnetChallenge.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -23,7 +24,7 @@ namespace MaximaTech.DotnetChallenge.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var response = await _httpClient.GetAsync("Produtos");
-            var result = await DeserializeResponseObject<IEnumerable<Produto>>(response);
+            var result = await DeserializeResponseObject<IEnumerable<ProdutoViewModel>>(response);
 
             return View("Index", result);
         }
@@ -31,19 +32,22 @@ namespace MaximaTech.DotnetChallenge.Web.Controllers
         [Route("{codigo}")]
         public async Task<IActionResult> Edit(int codigo)
         {
+            ProdutoViewModel produto = new ProdutoViewModel();
+
             if (codigo != 0)
             {
-                var response = await _httpClient.GetAsync($"Produtos/{codigo}");
-                var result = await DeserializeResponseObject<Produto>(response);
-                return View("Edit", result);
+                produto = await GetProduto(codigo);
+                return View("Edit", produto);
             }
-            return View("Edit");
+
+            produto.Departamentos = await GetDepartamentos();
+            return View("Edit", produto);
         }
 
         [Route("New")]
-        public IActionResult New()
+        public Task<IActionResult> New()
         {
-            return View("Edit");
+            return Edit(0);
         }
 
         [Route("Inativar/{codigo}")]
@@ -52,5 +56,24 @@ namespace MaximaTech.DotnetChallenge.Web.Controllers
             await _httpClient.DeleteAsync($"Produtos/{codigo}");
             return await Index();
         }
+
+        #region METODOS PRIVADOS
+
+        private async Task<ProdutoViewModel> GetProduto(int codigo)
+        {
+            var response = await _httpClient.GetAsync($"Produtos/{codigo}");
+            ProdutoViewModel produto = await DeserializeResponseObject<ProdutoViewModel>(response);
+            produto.Departamentos = await GetDepartamentos();
+            return produto;
+        }
+
+        private async Task<IEnumerable<Departamento>> GetDepartamentos()
+        {
+            var response = await _httpClient.GetAsync("Departamentos");
+            var result = await DeserializeResponseObject<IEnumerable<Departamento>>(response);
+            return result;
+        }
+
+        #endregion
     }
 }
