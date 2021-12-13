@@ -4,12 +4,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using MaximaTech.DotnetChallenge.Domain.Models;
 using MaximaTech.DotnetChallenge.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace MaximaTech.DotnetChallenge.Web.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     public class ProdutoController : BaseController
     {
         private readonly HttpClient _httpClient;

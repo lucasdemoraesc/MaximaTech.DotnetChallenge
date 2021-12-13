@@ -1,0 +1,13 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="wrapper">
+    <form class="form-signin" asp-controller="Login" asp-action="Login">
+        <h2 class="form-signin-heading">Login</h2>
+        <input type="email" class="form-control login-control" name="username" placeholder="E-mail" required="" autofocus="" />
+        <input type="password" class="form-control login-control" name="password" placeholder="Senha" required="" />
+        <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Login</button>
+    </form>
+</div>
