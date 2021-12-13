@@ -24,7 +24,7 @@ namespace MaximaTech.DotnetChallenge.Api.Data
 
             var builder = new DbContextOptionsBuilder<ApplicationContext>();
             builder.UseNpgsql(stringDeConexao, opcoes =>
-                opcoes.MigrationsAssembly("DLLS.Comcer.Infraestrutura"));
+                opcoes.MigrationsAssembly("MaximaTech.DotnetChallenge.Api"));
 
             var context = new ApplicationContext(builder.Options);
             return context;

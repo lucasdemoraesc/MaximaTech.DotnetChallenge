@@ -65,12 +65,12 @@ namespace MaximaTech.DotnetChallenge.Api.Data
             var rand = new Random();
             Produto produto;
 
-            for (int i = 1; i <= 1000; i++)
+            for (int i = 1000; i <= 1200; i++)
             {
                 produto = new Produto
                 {
                     Id = new Guid(),
-                    Codigo = 999 + i,
+                    Codigo = i,
                     Descricao = "Produto " + i,
                     Departamento = _departamentos[rand.Next(1, 5)],
                     Preco = rand.Next(10, 2000),
