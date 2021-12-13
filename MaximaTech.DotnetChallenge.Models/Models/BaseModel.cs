@@ -19,6 +19,7 @@ namespace MaximaTech.DotnetChallenge.Domain.Models
         /// Representa o código da entidade visível ao usuário.
         /// </summary>
         [Range(1, int.MaxValue, ErrorMessage = "O campo Código deve ser informado.")]
+        [Required(ErrorMessage = "Informe o Código.")]
         public int Codigo { get; set; }
 
         /// <summary>

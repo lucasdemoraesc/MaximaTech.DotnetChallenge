@@ -17,7 +17,7 @@ namespace MaximaTech.DotnetChallenge.Domain.Models
         /// Obtém ou define a descrição de um produto.
         /// </summary>
         [Required(ErrorMessage = "O campo Descrição deve ser informado")]
-        [MaxLength(TAMANHO_MAXIMO_DESCRICAO, ErrorMessage = "A Descrição deve conter no máximo 60 caracteres")]
+        [StringLength(TAMANHO_MAXIMO_DESCRICAO, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Descricao { get; set; }
 
         /// <summary>
